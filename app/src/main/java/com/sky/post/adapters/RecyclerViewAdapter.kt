@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.sky.post.R
 import com.sky.post.network.model.Post
@@ -14,7 +15,7 @@ const val HEADER = 0
 const val ITEM = 1
 
 interface OnItemClick {
-    fun onItemClick(post: Post)
+    fun onItemClick(post: Post, imageView: ImageView)
 }
 
 class RecyclerViewAdapter(
@@ -68,7 +69,7 @@ class RecyclerViewAdapter(
             view.postTitle.text = post.title
             view.postBody.text = post.body
             view.setOnClickListener {
-                listner.onItemClick(post)
+                listner.onItemClick(post,view.imageView)
             }
         }
     }

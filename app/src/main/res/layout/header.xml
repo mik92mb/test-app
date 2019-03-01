@@ -18,7 +18,7 @@
         <ImageView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:srcCompat="@mipmap/ic_launcher_round"
+                android:src="@drawable/bart"
                 android:id="@+id/imageView"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/guideline"
                 android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"/>
+                android:layout_marginTop="8dp"
+                android:transitionName="transition"
+                tools:ignore="ContentDescription"/>
 
         <androidx.constraintlayout.widget.Guideline
                 android:orientation="horizontal"
@@ -36,7 +38,7 @@
                 android:id="@+id/guideline"
                 app:layout_constraintGuide_percent="0.33"/>
         <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/postTitle"
                 app:layout_constraintStart_toStartOf="parent"
@@ -45,6 +47,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
                 android:maxLines="1"
+                android:textAlignment="center"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:ellipsize="end"
@@ -58,6 +61,7 @@
                 android:textSize="14sp"
                 android:maxLines="5"
                 android:ellipsize="end"
+                android:textAlignment="center"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +69,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/postTitle"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginTop="8dp"/>
+                android:layout_marginTop="8dp" android:gravity="center"/>
 
       <!--     <TextView
                    android:textColor="@android:color/white"

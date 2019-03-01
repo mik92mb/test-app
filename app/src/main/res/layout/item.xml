@@ -17,7 +17,6 @@
         <ImageView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:srcCompat="@mipmap/ic_launcher_round"
                 android:id="@+id/imageView"
                 android:layout_marginTop="8dp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -25,7 +24,9 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp"
-                app:layout_constraintDimensionRatio="1:1"/>
+                app:layout_constraintDimensionRatio="1:1"
+                android:transitionName="transition"
+                app:srcCompat="@drawable/bart"/>
 
         <TextView
                 android:layout_width="0dp"
