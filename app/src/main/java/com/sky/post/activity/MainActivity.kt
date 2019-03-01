@@ -1,5 +1,6 @@
 package com.sky.post.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -10,8 +11,10 @@ import com.sky.post.R
 import com.sky.post.adapters.RecyclerViewAdapter
 import com.sky.post.viewModels.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import com.sky.post.adapters.onItemClick
+import com.sky.post.network.model.Post
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), onItemClick {
 
     private lateinit var viewModel: MainViewModel
 
@@ -39,6 +42,10 @@ class MainActivity : BaseActivity() {
     private fun setRecycleViewModel() {
         recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         recyclerView.adapter = adapter
+    }
+
+    override fun onItemClick(post: Post) {
+        val intent = Intent(baseContext, DetailsActivity::class.java)
     }
 
 }
