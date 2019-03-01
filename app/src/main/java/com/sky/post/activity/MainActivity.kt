@@ -11,14 +11,14 @@ import com.sky.post.R
 import com.sky.post.adapters.RecyclerViewAdapter
 import com.sky.post.viewModels.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
-import com.sky.post.adapters.onItemClick
+import com.sky.post.adapters.OnItemClick
 import com.sky.post.network.model.Post
 
-class MainActivity : BaseActivity(), onItemClick {
+class MainActivity : BaseActivity(), OnItemClick {
 
     private lateinit var viewModel: MainViewModel
 
-    private val adapter = RecyclerViewAdapter(this)
+    private val adapter = RecyclerViewAdapter(this,this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +45,7 @@ class MainActivity : BaseActivity(), onItemClick {
     }
 
     override fun onItemClick(post: Post) {
-        val intent = Intent(baseContext, DetailsActivity::class.java)
+        DetailsActivity.start(this)
     }
 
 }
