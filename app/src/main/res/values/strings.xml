@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">post</string>
+    <string name="posts_found">Post founded : %1$d</string>
+</resources>
