@@ -19,10 +19,10 @@ import timber.log.Timber
 import com.google.android.material.appbar.AppBarLayout
 
 
-class DetailsActivity : BaseActivity(), AppBarLayout.OnOffsetChangedListener  {
+class DetailsActivity : BaseActivity(), AppBarLayout.OnOffsetChangedListener {
 
 
-    private lateinit var viewModel : DetailViewModel
+    private lateinit var viewModel: DetailViewModel
     private val commentAdapter = CommentAdapter(this)
 
     // METODO STATICO DI CLASSE - Coincide con static in Java
@@ -48,10 +48,11 @@ class DetailsActivity : BaseActivity(), AppBarLayout.OnOffsetChangedListener  {
 
         setRecyclerView()
         setToolbar(title)
+
         appBar.addOnOffsetChangedListener(this)
         viewModel = ViewModelProviders.of(this).get(DetailViewModel::class.java)
         viewModel.getCommentsbyId(id)
-        viewModel.success.observe( this, Observer {
+        viewModel.success.observe(this, Observer {
             commentAdapter.clearAll()
             commentAdapter.addComments(it)
         })
@@ -60,29 +61,24 @@ class DetailsActivity : BaseActivity(), AppBarLayout.OnOffsetChangedListener  {
         })
     }
 
-
-    override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
-        Timber.i("ENTRO")
-        val isCollasped = appBarLayout.totalScrollRange + verticalOffset == 0
-        supportActionBar?.setDisplayShowTitleEnabled(isCollasped)
-    }
-
-
-    private fun setToolbar(title: String){
-        setSupportActionBar(toolbarDetail)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-        supportActionBar?.title = title
-    }
-
-
-    private fun setRecyclerView(){
+    private fun setRecyclerView() {
         with(recyclerCommenti) {
             layoutManager = LinearLayoutManager(this@DetailsActivity, RecyclerView.VERTICAL, false)
             adapter = commentAdapter
         }
     }
 
+    private fun setToolbar(title: String) {
+        setSupportActionBar(toolbarDetail)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.title = title
+    }
+
+    override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
+        val isCollasped = appBarLayout.totalScrollRange + verticalOffset == 0
+        supportActionBar?.setDisplayShowTitleEnabled(isCollasped)
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {

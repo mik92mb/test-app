@@ -23,17 +23,18 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/commentBody"/>
         <TextView
-                android:text="TextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/commentName"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:ellipsize="end"
+                android:maxLines="1"
                 android:textStyle="bold"
                 android:textSize="12sp"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"/>
         <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -41,8 +42,10 @@
                 android:ellipsize="end"
                 android:textStyle="italic"
                 android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView2" android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp" app:layout_constraintTop_toBottomOf="@+id/commentName"/>
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@+id/commentName"/>
         <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -55,7 +58,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintTop_toBottomOf="@+id/commentEmail"
-                app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

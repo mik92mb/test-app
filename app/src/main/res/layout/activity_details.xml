@@ -14,7 +14,6 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             android:layout_height="200dp">
 
-
         <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/collapsingToolbar"
                 android:layout_width="match_parent"
@@ -23,7 +22,6 @@
                 android:fitsSystemWindows="true"
                 app:titleEnabled="false"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
 
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -64,7 +62,7 @@
             android:layout_height="match_parent"
             android:background="@color/colorPrimary"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
+    
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
