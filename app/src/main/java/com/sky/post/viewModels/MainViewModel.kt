@@ -1,5 +1,6 @@
 package com.sky.post.viewModels
 
+import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.sky.post.BASE_URL
 import com.sky.post.BaseViewModel
@@ -12,7 +13,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
 
-class MainViewModel : BaseViewModel() {
+class MainViewModel(application: Application) : BaseViewModel(application) {
 
     val success = MutableLiveData<List<Post>>()
     val error = MutableLiveData<Throwable>()

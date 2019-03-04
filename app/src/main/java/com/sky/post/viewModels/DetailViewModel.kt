@@ -1,12 +1,13 @@
 package com.sky.post.viewModels
 
+import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.sky.post.BaseViewModel
 import com.sky.post.network.model.Comment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class DetailViewModel : BaseViewModel() {
+class DetailViewModel(application: Application) : BaseViewModel(application) {
 
     val success = MutableLiveData<List<Comment>>()
     val error = MutableLiveData<Throwable>()

@@ -1,5 +1,7 @@
 package com.sky.post
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import com.sky.post.network.PostAPI
 import io.reactivex.disposables.CompositeDisposable
@@ -8,12 +10,12 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-open class BaseViewModel : ViewModel() {
+open class BaseViewModel(application: Application) : AndroidViewModel(application) {
 
     private val subscription by lazy { CompositeDisposable() }
 
 
-    protected val postClient = Retrofit.Builder()
+    protected val postClient: PostAPI = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
