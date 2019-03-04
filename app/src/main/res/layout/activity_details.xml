@@ -6,14 +6,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".activity.DetailsActivity"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/coordinatorLayout"
-        app:layout_constraintTop_toTopOf="parent">
+        android:id="@+id/coordinatorLayout">
 
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBar"
             android:layout_width="match_parent"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             android:layout_height="200dp">
 
 
@@ -21,8 +19,10 @@
                 android:id="@+id/collapsingToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_scrollFlags="exitUntilCollapsed|scroll"
-                app:expandedTitleMarginStart="32dp">
+                app:contentScrim="?attr/colorPrimary"
+                android:fitsSystemWindows="true"
+                app:titleEnabled="false"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,6 +33,7 @@
                 <ImageView
                         android:id="@+id/imageView"
                         android:layout_width="0dp"
+                        android:transitionName="transition"
                         android:layout_height="0dp"
                         android:scaleType="centerCrop"
                         android:fitsSystemWindows="true"
@@ -46,11 +47,11 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    app:layout_collapseMode="pin"
+                    android:id="@+id/toolbarDetail"
                     android:layout_width="match_parent"
-                    app:titleTextColor="@color/colorAccent"
-                    android:layout_height="?attr/actionBarSize">
+                    app:layout_collapseMode="pin"
+                    android:layout_height="?attr/actionBarSize"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -58,12 +59,12 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerCommenti"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorPrimary"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:ignore="PrivateResource">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
-    </androidx.recyclerview.widget.RecyclerView>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

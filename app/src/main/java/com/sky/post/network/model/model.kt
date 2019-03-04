@@ -20,6 +20,8 @@ data class Post(
 
 data class Comment(
 
+    @SerializedName("id")
+    val id: Int,
     @SerializedName("name")
     val name: String,
     @SerializedName("email")

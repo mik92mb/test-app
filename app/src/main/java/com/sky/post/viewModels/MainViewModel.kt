@@ -18,16 +18,8 @@ class MainViewModel : BaseViewModel() {
     val error = MutableLiveData<Throwable>()
 
 
-    private val postClient = Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-        .create(PostAPI::class.java)
-
-
     // FACCIAMO LA CHIAMATA
-    fun setCall() {
+    fun getPost() {
         Timber.e("SONO IN CALL")
         postClient.getPost()
             .subscribeOn(Schedulers.io())
@@ -40,4 +32,7 @@ class MainViewModel : BaseViewModel() {
             })
             .autoDispose()
     }
+
+
+
 }

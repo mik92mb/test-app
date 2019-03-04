@@ -1,10 +1,7 @@
 package com.sky.post.activity
 
-import android.app.ActivityOptions
-import android.media.Image
 import android.os.Bundle
 import android.widget.ImageView
-import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +13,6 @@ import com.sky.post.viewModels.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import com.sky.post.adapters.OnItemClick
 import com.sky.post.network.model.Post
-import timber.log.Timber
 
 class MainActivity : BaseActivity(), OnItemClick {
 
@@ -31,7 +27,7 @@ class MainActivity : BaseActivity(), OnItemClick {
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         setRecycleViewModel()
         progressBar.show()
-        viewModel.setCall()
+        viewModel.getPost()
         viewModel.success.observe(this, Observer {
             progressBar.hide()
             adapter.clearList()
@@ -51,5 +47,8 @@ class MainActivity : BaseActivity(), OnItemClick {
     override fun onItemClick(post: Post, imageView: ImageView) {
         DetailsActivity.start(this, imageView, post.id, post.title)
     }
+
+
+    override fun onSupportNavigateUp() = true
 
 }
