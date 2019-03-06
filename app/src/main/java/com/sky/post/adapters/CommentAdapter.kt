@@ -6,12 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sky.post.R
-import com.sky.post.network.model.Comment
+import com.sky.post.data.local.CommentEntity
+import com.sky.post.data.network.model.Comment
 import kotlinx.android.synthetic.main.item_comment.view.*
 
 class CommentAdapter(val context: Context) : RecyclerView.Adapter<CommentAdapter.ItemCommentHolder>() {
 
-    private val comments : ArrayList<Comment> = ArrayList()
+    private val comments : ArrayList<CommentEntity> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemCommentHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_comment, parent, false)
@@ -22,7 +23,7 @@ class CommentAdapter(val context: Context) : RecyclerView.Adapter<CommentAdapter
         return comments.size
     }
 
-    fun addComments(lst: List<Comment>) {
+    fun addComments(lst: List<CommentEntity>) {
         comments.addAll(lst)
         notifyDataSetChanged()
     }
@@ -39,7 +40,7 @@ class CommentAdapter(val context: Context) : RecyclerView.Adapter<CommentAdapter
 
     class ItemCommentHolder(private val view:View) : RecyclerView.ViewHolder(view) {
 
-        fun bind(comment: Comment) {
+        fun bind(comment: CommentEntity) {
             view.commentName.text = comment.name
             view.commentEmail.text = comment.email
             view.commentBody.text = comment.body

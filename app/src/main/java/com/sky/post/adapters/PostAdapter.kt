@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.sky.post.R
-import com.sky.post.network.model.Post
+import com.sky.post.data.local.PostEntity
 import kotlinx.android.synthetic.main.item.view.*
 
 
@@ -15,7 +15,7 @@ const val HEADER = 0
 const val ITEM = 1
 
 interface OnItemClick {
-    fun onItemClick(post: Post, imageView: ImageView)
+    fun onItemClick(post: PostEntity, imageView: ImageView)
 }
 
 class RecyclerViewAdapter(
@@ -23,7 +23,7 @@ class RecyclerViewAdapter(
     private val listener: OnItemClick
 ) : RecyclerView.Adapter<RecyclerViewAdapter.ItemViewHolder>() {
 
-    private val lstPost: ArrayList<Post> = ArrayList()
+    private val lstPost: ArrayList<PostEntity> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = if (viewType == HEADER) {
@@ -57,19 +57,19 @@ class RecyclerViewAdapter(
         notifyDataSetChanged()
     }
 
-    fun addAll(list: List<Post>) {
+    fun addAll(list: List<PostEntity>) {
         lstPost.addAll(list)
         notifyDataSetChanged()
     }
 
 
     // ********* CLASSE ITEMHOLDER ************
-    class ItemViewHolder(private val view: View, private val listner: OnItemClick) : RecyclerView.ViewHolder(view) {
-        fun bind(post: Post) {
+    class ItemViewHolder(private val view: View, private val listener: OnItemClick) : RecyclerView.ViewHolder(view) {
+        fun bind(post: PostEntity) {
             view.postTitle.text = post.title
             view.postBody.text = post.body
             view.setOnClickListener {
-                listner.onItemClick(post,view.imageView)
+                listener.onItemClick(post,view.imageView)
             }
         }
     }

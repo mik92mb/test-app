@@ -1,7 +1,7 @@
-package com.sky.post.network
+package com.sky.post.data.network
 
-import com.sky.post.network.model.Comment
-import com.sky.post.network.model.Post
+import com.sky.post.data.network.model.Comment
+import com.sky.post.data.network.model.Post
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -1,20 +1,22 @@
 package com.sky.post.activity
 
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.sky.post.BaseActivity
 import com.sky.post.R
 import com.sky.post.adapters.RecyclerViewAdapter
 import com.sky.post.viewModels.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import com.sky.post.adapters.OnItemClick
-import com.sky.post.network.model.Post
+import com.sky.post.data.local.PostEntity
 
-class MainActivity : BaseActivity(), OnItemClick {
+class MainActivity : BaseActivity(), OnItemClick, SwipeRefreshLayout.OnRefreshListener {
 
     private lateinit var viewModel: MainViewModel
 
@@ -22,21 +24,12 @@ class MainActivity : BaseActivity(), OnItemClick {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_main)
+
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         setRecycleViewModel()
-        progressBar.show()
-        viewModel.getPost()
-        viewModel.success.observe(this, Observer {
-            progressBar.hide()
-            adapter.clearList()
-            adapter.addAll(it)
-            textView.text = getString(R.string.posts_found, it.size)
-        })
-        viewModel.error.observe(this, Observer {
-            progressBar.hide()
-        })
+        setSwipeRefreshLayout()
+        callGetPost()
     }
 
     private fun setRecycleViewModel() {
@@ -44,7 +37,34 @@ class MainActivity : BaseActivity(), OnItemClick {
         recyclerView.adapter = adapter
     }
 
-    override fun onItemClick(post: Post, imageView: ImageView) {
+    private fun setSwipeRefreshLayout() {
+        swipeRefresh.setColorSchemeColors(Color.BLUE, Color.RED, Color.YELLOW, Color.GREEN)
+        swipeRefresh.setOnRefreshListener(this)
+    }
+
+
+    private fun callGetPost() {
+        progressBar.show()
+        viewModel.getPost()
+        viewModel.success.observe(this, Observer {
+            progressBar.hide()
+            swipeRefresh.isRefreshing = false
+            adapter.clearList()
+            adapter.addAll(it)
+            textView.text = getString(R.string.posts_found, it.size)
+        })
+        viewModel.error.observe(this, Observer {
+            progressBar.hide()
+            swipeRefresh.isRefreshing = false
+        })
+    }
+
+
+    override fun onRefresh() {
+        viewModel.getPost()
+    }
+
+    override fun onItemClick(post: PostEntity, imageView: ImageView) {
         DetailsActivity.start(this, imageView, post.id, post.title)
     }
 

@@ -2,20 +2,15 @@ package com.sky.post.viewModels
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import com.sky.post.BASE_URL
 import com.sky.post.BaseViewModel
-import com.sky.post.network.PostAPI
-import com.sky.post.network.model.Post
+import com.sky.post.data.local.PostEntity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
 
 class MainViewModel(application: Application) : BaseViewModel(application) {
 
-    val success = MutableLiveData<List<Post>>()
+    val success = MutableLiveData<List<PostEntity>>()
     val error = MutableLiveData<Throwable>()
 
 
@@ -24,6 +19,16 @@ class MainViewModel(application: Application) : BaseViewModel(application) {
         Timber.e("SONO IN CALL")
         postClient.getPost()
             .subscribeOn(Schedulers.io())
+            .flatMapIterable { it }
+            .map {
+                val posts = it.toPostEntity()
+                db.entityDao.insertPost(posts)
+                posts
+            }
+            .toList()
+            .onErrorReturn {
+                db.entityDao.getAllPosts()
+            }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ lstPost ->
                 success.value = lstPost

@@ -3,12 +3,11 @@
 <androidx.cardview.widget.CardView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools" android:layout_height="100dp"
+        android:layout_height="100dp"
         android:layout_width="match_parent"
         android:elevation="8dp"
         android:layout_margin="6dp"
         app:cardCornerRadius="4dp">
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -26,7 +25,7 @@
                 android:layout_marginStart="8dp"
                 app:layout_constraintDimensionRatio="1:1"
                 android:transitionName="transition"
-                app:srcCompat="@drawable/bart"/>
+                app:srcCompat="@drawable/bart_2"/>
 
         <TextView
                 android:layout_width="0dp"
