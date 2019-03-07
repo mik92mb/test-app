@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sky.post.R
 import com.sky.post.data.local.CommentEntity
-import com.sky.post.data.network.model.Comment
 import kotlinx.android.synthetic.main.item_comment.view.*
 
 class CommentAdapter(val context: Context) : RecyclerView.Adapter<CommentAdapter.ItemCommentHolder>() {

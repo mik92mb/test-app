@@ -25,7 +25,6 @@ class MainActivity : BaseActivity(), OnItemClick, SwipeRefreshLayout.OnRefreshLi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         setRecycleViewModel()
         setSwipeRefreshLayout()
