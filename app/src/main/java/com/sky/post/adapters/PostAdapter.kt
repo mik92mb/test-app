@@ -10,7 +10,6 @@ import com.sky.post.R
 import com.sky.post.data.local.PostEntity
 import kotlinx.android.synthetic.main.item.view.*
 
-
 const val HEADER = 0
 const val ITEM = 1
 
@@ -35,18 +34,12 @@ class RecyclerViewAdapter(
     }
 
 
-    override fun getItemViewType(position: Int): Int {
-        return if (position == 0)
-            HEADER
-        else {
-            ITEM
-        }
-    }
+    override fun getItemViewType(position: Int) = if (position == 0) HEADER else ITEM
+
 
     override fun getItemCount(): Int {
         return lstPost.size
     }
-
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.bind(lstPost[position])
@@ -62,14 +55,14 @@ class RecyclerViewAdapter(
         notifyDataSetChanged()
     }
 
-
     // ********* CLASSE ITEMHOLDER ************
-    class ItemViewHolder(private val view: View, private val listener: OnItemClick) : RecyclerView.ViewHolder(view) {
+    class ItemViewHolder(private val view: View, private val listener: OnItemClick) :
+        RecyclerView.ViewHolder(view) {
         fun bind(post: PostEntity) {
             view.postTitle.text = post.title
             view.postBody.text = post.body
             view.setOnClickListener {
-                listener.onItemClick(post,view.imageView)
+                listener.onItemClick(post, view.imageView)
             }
         }
     }

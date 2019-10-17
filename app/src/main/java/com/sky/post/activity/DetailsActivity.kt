@@ -32,7 +32,11 @@ class DetailsActivity : BaseActivity(), AppBarLayout.OnOffsetChangedListener {
 
         fun start(activity: AppCompatActivity, imageView: ImageView, id: Int, title: String) {
             val intent = Intent(activity, DetailsActivity::class.java)
-            val options = ActivityOptions.makeSceneTransitionAnimation(activity, imageView, "transition")
+            val options = ActivityOptions.makeSceneTransitionAnimation(
+                activity,
+                imageView,
+                "transition"
+            )
             intent.putExtra(BUNDLE_ID, id)
             intent.putExtra(BUNDLE_TITLE, title)
             activity.startActivity(intent, options.toBundle())

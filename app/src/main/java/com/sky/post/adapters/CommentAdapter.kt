@@ -9,9 +9,10 @@ import com.sky.post.R
 import com.sky.post.data.local.CommentEntity
 import kotlinx.android.synthetic.main.item_comment.view.*
 
-class CommentAdapter(val context: Context) : RecyclerView.Adapter<CommentAdapter.ItemCommentHolder>() {
+class CommentAdapter(private val context: Context) :
+    RecyclerView.Adapter<CommentAdapter.ItemCommentHolder>() {
 
-    private val comments : ArrayList<CommentEntity> = ArrayList()
+    private val comments: ArrayList<CommentEntity> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemCommentHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_comment, parent, false)
@@ -27,7 +28,7 @@ class CommentAdapter(val context: Context) : RecyclerView.Adapter<CommentAdapter
         notifyDataSetChanged()
     }
 
-    fun clearAll(){
+    fun clearAll() {
         comments.clear()
         notifyDataSetChanged()
     }
@@ -36,8 +37,7 @@ class CommentAdapter(val context: Context) : RecyclerView.Adapter<CommentAdapter
         holder.bind(comments[position])
     }
 
-
-    class ItemCommentHolder(private val view:View) : RecyclerView.ViewHolder(view) {
+    class ItemCommentHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(comment: CommentEntity) {
             view.commentName.text = comment.name
